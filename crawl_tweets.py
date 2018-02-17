@@ -436,6 +436,16 @@ if __name__ == '__main__':
         tweet_ids = fp.read().split()
     tweets = crawl_tweets(tweet_ids)
 
+    #edits
+    edits = {}
+    with open('EDITS') as fp:
+        for line in fp:
+            line = line.strip().split('\t')
+            tid, eds = line[0], line[1:]
+            edits.setdefault(tid, [])
+            for edit in eds:
+                edits[tid].append(edit.split('|'))
+
     # tokenize tweets and align annotations
     for tid in tweet_ids:
         annot = annot_map[tid]
@@ -446,6 +456,9 @@ if __name__ == '__main__':
                 sys.stderr.write('Tweet not found :: t_id %s :: '
                                  'Contact author for full data-set\n' %tid)
         else:
+            if tid in edits:
+                for edit in edits[tid]:
+                    tweets[tid] = tweets[tid].replace(edit[0], edit[1])
             tweet = tok.tokenize(tweets[tid])
             tweet = [wd for wd in tweet[::-1] if wd.isalpha()]
             org_tweet = annot['tweet']
@@ -462,8 +475,8 @@ if __name__ == '__main__':
             continue
         pad = ['_']*len(annot['ids'])
         norm = [n if n!='_' else r for n,r in zip(annot['norm'], annot['tweet'])]
-        dep_tweet = zip(annot['ids'], annot['tweet'], norm, annot['pos'], pad, pad,
-                        annot['parent'], annot['drel'], annot['lid'], pad)
+        dep_tweet = zip(annot['ids'], annot['tweet'], norm, annot['pos'], annot['cpos'],
+                        annot['chunk'], annot['parent'], annot['drel'], annot['lid'], pad)
         dep_tweet = '\n'.join(['\t'.join(x) for x in dep_tweet])
         ofp.write('%s\n\n' % dep_tweet)
 
