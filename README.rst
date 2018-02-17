@@ -18,10 +18,10 @@ Crawl Tweets
 
 ::
 
-    python crawl_tweets.py -i tweet_ids_dev.txt -a dev-annot.json -o tweets_dev.conll
-    python crawl_tweets.py -i tweet_ids_test.txt -a test-annot.json -o tweets_test.conll
+    python crawl_tweets.py -i tweet_ids_train.txt -a train-annot.json -o tweets_train.conll  # NAACL 2018 Dataset
+    python crawl_tweets.py -i tweet_ids_dev.txt -a dev-annot.json -o tweets_dev.conll  # EACL 2017 dataset
+    python crawl_tweets.py -i tweet_ids_test.txt -a test-annot.json -o tweets_test.conll  #EACL 2017 dataset
 
-The total tweet count of dev-set and test-set should be 225 each. 
 
 Cite
 ^^^^
