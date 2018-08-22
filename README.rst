@@ -28,11 +28,12 @@ Cite
 
 Any publication reporting the work done using this data should cite the following papers:
 
-@article{bhat2017joining,
+@inproceedings{bhat2017joining,
   title={Joining Hands: Exploiting Monolingual Treebanks for Parsing of Code-mixing Data},
-  author={Bhat, Irshad Ahmad and Bhat, Riyaz Ahmad and Shrivastava, Manish and Sharma, Dipti Misra and LTRC, IIIT-H},
-  journal={EACL 2017},
-  pages={324},
+  author={Bhat, Irshad and Bhat, Riyaz A and Shrivastava, Manish and Sharma, Dipti},
+  booktitle={Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 2, Short Papers},
+  volume={2},
+  pages={324--330},
   year={2017}
 }
 
