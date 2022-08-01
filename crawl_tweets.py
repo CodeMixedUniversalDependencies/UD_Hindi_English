@@ -387,7 +387,7 @@ class Tokenizer(BaseTokenizer):
 def crawl_tweets(tweet_ids):
     tweets = {}
     for n_ids in [tweet_ids[i:i+100] for i in range(0, len(tweet_ids), 100)]:
-        n_tweets = twitter.statuses_lookup(n_ids)
+        n_tweets = twitter.lookup_statuses(n_ids)
         for tw in n_tweets:
             if tw:
                 tweets[tw.id_str] = ' '.join(tw.text.split())
